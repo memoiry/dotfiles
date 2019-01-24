@@ -1,0 +1,10 @@
+[user]
+	email = memoiry@outlook.com
+	name = memoiry
+[core]
+	editor = vim
+[alias]
+	co = checkout
+	st = status
+	cm = commit
+	unstage = reset HEAD --
