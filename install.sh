@@ -10,24 +10,17 @@ fi
 # add vimrc
 ln -s ${PROJ_DIR}/vim/vimrc ${INSTALL_PREFIX}/.vimrc
 
-# install vundle to manage vim plugin
-if [ ! -d "${INSTALL_PREFIX}/.vim/bundle/Vundle.vim" ]; then
-  echo "Not exist"
-  git clone https://github.com/VundleVim/Vundle.vim.git $INSTALL_PREFIX/.vim/bundle/Vundle.vim
-fi
-vim +PluginInstall +qall
-
 # add zsh conf
 ln -s ${PROJ_DIR}/zsh/zshrc ${INSTALL_PREFIX}/.zshrc
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c ${PROJ_DIR}/zsh/install.sh
+
 # with oh-my-zsh to configure your reliance
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # shell integration
-curl -L https://iterm2.com/shell_integration/zsh \
--o ~/.iterm2_shell_integration.zsh
-touch ~/.platform-zshrc
+# curl -L https://iterm2.com/shell_integration/zsh \
+# -o ~/.iterm2_shell_integration.zsh
 
 # add gitconfig
 ln -s ${PROJ_DIR}/git/gitconfig ${INSTALL_PREFIX}/.gitconfig
